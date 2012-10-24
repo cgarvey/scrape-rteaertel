@@ -93,6 +93,7 @@ if( lc( $ARGV[0] ) eq "archive" || lc( $ARGV[0] ) eq "a" ) {
 			else {
 				# Not a valid teletext page (most likely a 404 if we were bothered to check), so skip.
 				print "[CAN NOT PARSE] ";
+				$j = 200;
 			}
 			print "\n";
 		}
