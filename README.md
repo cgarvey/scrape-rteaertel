@@ -1,7 +1,7 @@
 RTÉ Aertel Archiver
 ===================
 
-***NOTE**: This script no longer archives Aertel analogue text data (see ASO note below)*
+**NOTE**: *This script no longer archives Aertel analogue text data (see ASO note below)*
 
 A Perl script to scrape RTE.ie Aertel teletext content (before analogue switch-off!). Archives Aertel image data locally, and can render with local HTML template.
 
