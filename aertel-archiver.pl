@@ -133,10 +133,49 @@ elsif( lc( $ARGV[0] ) eq "render" || lc( $ARGV[0] ) eq "r" ) {
 			}
 			close( F );
 
-			#TODO template substitution
+			# Get current page, and sub-page numbers. Use these to determine if we have previous/next sub pages for this page.
+			my( $pagenum ) = 0;
+			my( $subpagenum ) = 0;
+			if( $f =~ /([0-9]*)-([0-9]*)\.html/ ) {
+				$pagenum = ( 0 + $1 );
+				$subpagenum = ( 0 + $2 );
+			}
+			# Check for Prev sub page
+			my( $prevsubpage ) = 0;
+			if( $subpagenum > 1 ) {
+				if( -r( "html/" . sprintf( "%03d-%02d", $pagenum, ( $subpagenum - 1 ) ) . ".html" ) ) { $prevsubpage = ( $subpagenum - 1 ); }
+			}
+			# Check for Next sub page
+			my( $nextsubpage) = 0;
+			if( -r( "html/" . sprintf( "%03d-%02d", $pagenum, ( $subpagenum + 1 ) ) . ".html" ) ) { $nextsubpage = ( $subpagenum + 1 ); }
+
+			# Template substitution
+			my( $render ) = $template; # start with template
+			my( $pagenumstr ) = sprintf( "%03d (%02d)", $pagenum, $subpagenum );
+			$render =~ s/##PAGE##/$pagenumstr/g; #current page number
+			if( $prevsubpage > 0 ) { #previous sub page number/link
+				my( $prevsubpagestr ) = sprintf( "%03d-%02d", $pagenum, $prevsubpage );
+				$render =~ s/##PREVSUBPAGENUM##/$prevsubpagestr/g;
+				$render =~ s/##PREVSUBPAGE(.*)##/$1/g;
+			}
+			else {
+				$render =~ s/##PREVSUBPAGENUM##//g;
+				$render =~ s/##PREVSUBPAGE(.*)##/&nbsp;/g;
+			}
+			if( $nextsubpage > 0 ) { #next sub page number/link
+				my( $nextsubpagestr ) = sprintf( "%03d-%02d", $pagenum, $nextsubpage );
+				$render =~ s/##NEXTSUBPAGENUM##/$nextsubpagestr/g;
+				$render =~ s/##NEXTSUBPAGE(.*)##/$1/g;
+			}
+			else {
+				$render =~ s/##NEXTSUBPAGENUM##//g;
+				$render =~ s/##NEXTSUBPAGE(.*)##/&nbsp;/g;
+			}
+
+			$render =~ s/##CONTENT##/$page/g; # Finally, the content from the archived HTML (<image> and <map> HTML).
 
 			open( F, ">./render/$f" ) or die "Could not open render/$f for writing rendered HTML.\n";
-			print F $page;
+			print F $render;
 			close( F );
 		}
 	}

@@ -4,31 +4,58 @@
 		<!-- Aertel data scraped using https://github.com/cgarvey/scrape-rteaertel -->
 		<style type="text/css">
 			BODY { background-color: #000; font-family: tahoma, verdana, arial, times; }
-			H1 { width: 520px; margin: 20px auto 20px auto; text-indent: -9999px; background: #000 url( "logo.gif" ) no-repeat left; }
-			P { text-align: center; width: 520px; margin: 10px auto 30px auto; color: #aaa; font-size: 0.8em; }
+			H1 { width: 520px; margin: 20px auto 20px auto; text-indent: -9999px; background: #000 url( "../template/logo.gif" ) no-repeat left; }
+			P { text-align: center; width: 520px; margin: 10px auto 20px auto; color: #aaa; font-size: 0.8em; }
+			FORM { text-align: center; width: 520px; margin: 0 auto; color: #aaa; font-size: 0.8em; }
+			INPUT { border: 2px solid #333; background-color: #222; color: #aaa; }
+			FORM SPAN { font-size: 0.75em; color: #666; }
 			A { color: #aaa; text-decoration: none; }
 			A:hover { color: #fff; text-decoration: underline; }
 			.fl { float: left; }
 			.fr { float: right; }
 		</style>
+		<script type="text/javascript">
+			function doSubmit( frm ) {
+				if( frm.elements && frm.elements.length == 3 ) {
+					if( frm.elements[0].value.length == 3 && frm.elements[1].value.length == 2 ) {
+						if( !isNaN( frm.elements[0].value ) && !isNaN( frm.elements[1].value ) ) {
+							window.location = frm.elements[0].value + "-" + frm.elements[1].value + ".html";
+						}
+						else {
+							alert( "Enter 3-digit page number to visit. Change default sub-page number, if needs be." );
+							frm.elements[0].value = "100";
+							frm.elements[1].value = "01";
+						}
+					}
+					else {
+						alert( "Enter 3-digit page number to visit. Change default sub-page number, if needs be." );
+						frm.elements[0].value = "100";
+						frm.elements[1].value = "01";
+					}
+				}
+				return false;
+			}
+		</script>
 	</head>
 	<body>
-		<h1>Aertel page ##page##</h1>
-		<p>
-			<span class="fl">##SUBPAGEPREVIOUS<a href="#LINK#" title="Page #PAGE#">Previous Subpage</a>##</span>
-			&nbsp;
-			<span class="fr">##SUBPAGENEXT<a href="#LINK#" title="Page #PAGE#">Next Subpage</a>##</span>
-		</p>
+		<a accesskey="i" href="100-01.html"></a>
+		<h1>Aertel page ##PAGE##</h1>
 		<p>
 
 			##CONTENT##
 
 		</p>
 		<p>
-			<span class="fl">##MAINPAGEPREVIOUS<a href="#LINK#" title="Page #PAGE#">Previous Page</a>##</span>
+			<span class="fl">##PREVSUBPAGE<a accesskey="p" href="##PREVSUBPAGENUM##.html" title="Page ##PREVSUBPAGENUM##">Previous Subpage</a>##</span>
 			&nbsp;
-			<span class="fr">##MAINPAGENEXT<a href="#LINK#" title="Page #PAGE#">Next Page</a>##</span>
+			<span class="fr">##NEXTSUBPAGE<a accesskey="n" href="##NEXTSUBPAGENUM##.html" title="Page ##NEXTSUBPAGENUM##">Next Subpage</a>##</span>
 		</p>
+		<form onsubmit="return doSubmit( this );">
+			<span>Navigate to Page:</span><br />
+			<input accesskey="s" onfocus="this.select();" value="100" type="text" size="5" maxlength="3" style="width: 40px;" name="page" />
+			<input value="01" type="text" size="3" maxlength="2" style="width: 30px;" name="subpage" /><br />
+			<input style="visibility: hidden;" type="submit" />
+		</form>
 	</body>
 </html>
 
