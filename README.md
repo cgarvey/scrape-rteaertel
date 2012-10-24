@@ -1,6 +1,8 @@
 RTÉ Aertel Archiver
 ===================
 
+***NOTE**: This script no longer archives Aertel analogue text data (see ASO note below)*
+
 A Perl script to scrape RTE.ie Aertel teletext content (before analogue switch-off!). Archives Aertel image data locally, and can render with local HTML template.
 
 Aertel content consists of an image per page (and sub page) with HTML `imagemap`s used for clickable page numbers. This script scrapes the image and map data, and stores locally; 1 HTML file and 1 image file per teletext page/sub-page.

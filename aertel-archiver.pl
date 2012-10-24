@@ -25,6 +25,7 @@ use HTTP::Request::Common;
 
 $| = 1;
 
+
 # Set up HTTP client, with a reasonable looking User Agent
 my( $agent ) = new LWP::UserAgent;
 $agent->agent( "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705)" );
@@ -35,6 +36,15 @@ if( !-d( "./html" ) ) { mkdir "./html" or die "Can't make html/ directory\n"; }
 if( !-d( "./render" ) ) { mkdir "./render" or die "Can't make render/ directory\n"; }
 
 if( lc( $ARGV[0] ) eq "archive" || lc( $ARGV[0] ) eq "a" ) {
+	 # Disable archiving action, as analogue Aertel is no more.
+	print "RTÉ have retried the analogue Aertel teletext service, so this\n";
+	print "script will no longer be able to archive data.\n\n";
+	print "You can view the newer digital Aertel teletext service online\n";
+	print "at http://www.rte.ie/aertel/\n\n";
+	print "This script will continue to render any existing Aertel data\n";
+	print "you previously downloaded/archived.\n";
+	exit;
+
 	# Archive mode - download Aertel content from RTE.ie and store teletext image (and associated image map data) locally.
 	print "\nStarting.\n";
 
