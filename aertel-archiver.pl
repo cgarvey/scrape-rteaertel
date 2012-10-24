@@ -119,13 +119,13 @@ elsif( lc( $ARGV[0] ) eq "render" || lc( $ARGV[0] ) eq "r" ) {
 	close( F );
 	print "done.\n";
 
-	print "Processing HTML files... 000"; # Progress indication
+	print "Processing HTML files... 0000"; # Progress indication
 	my( $i ) = 0;
 	my( $f );
 	foreach $f( @dir ) {
 		if( $f =~ /.html$/ ) {
 			$i += 1;
-			print "\b\b\b" . sprintf( "%03d", $i );
+			print "\b\b\b\b" . sprintf( "%04d", $i );
 
 			my( $page ) = "";
 			open( F, "./html/$f" ) or die "Could not open html/$f archive HTML.\n";
@@ -180,7 +180,7 @@ elsif( lc( $ARGV[0] ) eq "render" || lc( $ARGV[0] ) eq "r" ) {
 			close( F );
 		}
 	}
-	print "\b\b\b" . $i ." files processed.\n";
+	print "\b\b\b\b" . $i ." files processed.\n";
 }
 else {
 	print "\nUsage: $0 <command>\n\n";
