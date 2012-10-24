@@ -15,6 +15,12 @@ The script can be used in two ways. One is to `archive` the data, which download
 *  Switch to the directory containing the script
 *  Execute without any arguments to see the argument choices. `./aertel-archiver.pl`
 
+Sample
+------
+Here''s what the provided sample template looks like; it''s just a minimalist theme with some added navigation features.
+![sample screenshot](screenshot.png "Sample Screenshot")
+
+
 Analogue Aertel switch-off [ASO/DSO](http://saorview.ie/about.html)
 ------------------------------------
 This script will cease to be functional when RTÉ turn off Analogue Aertel. They''ve said they intend to do this on ASO date (October 24th, 2012), but it''s unclear if all platforms will be affected (website included). Once the Analogue Aertel has been decommissioned from the website this script will no longer work. RTÉ will continue to offer a [Digital Aertel Service](http://www.rte.ie/aerteldigital/) which is available now.
