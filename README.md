@@ -18,7 +18,7 @@ The script can be used in two ways. One is to `archive` the data, which download
 Sample
 ------
 Here''s what the provided sample template looks like; it''s just a minimalist theme with some added navigation features.
-![sample screenshot](screenshot.png "Sample Screenshot")
+![sample screenshot](https://raw.github.com/cgarvey/scrape-rteaertel/master/screenshot.png "Sample Screenshot")
 
 
 Analogue Aertel switch-off [ASO/DSO](http://saorview.ie/about.html)
